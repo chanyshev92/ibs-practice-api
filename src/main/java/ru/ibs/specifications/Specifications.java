@@ -1,5 +1,6 @@
 package ru.ibs.specifications;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -27,7 +28,8 @@ public class Specifications {
     }
 
     /**
-     * Спецификация запроса. Установка URL страницы. Установка типа JSON
+     * Спецификация запроса. Установка URL страницы. Установка типа JSON.
+     * Добавление cookies для id-сессии
      * @return Объект спецификации
      */
     public  static RequestSpecification requestSpec(){
@@ -60,6 +62,7 @@ public class Specifications {
      * Установка спецификации запроса
      * @param requestSpec Входная спецификация запроса
      */
+    @Step(value = "Установить спецификации запросов ")
     public static void installSpec(RequestSpecification requestSpec){
         RestAssured.requestSpecification = requestSpec;
     }
@@ -68,6 +71,7 @@ public class Specifications {
      * Установка спецификации ответа
      * @param responseSpec Входная спецификация ответа
      */
+    @Step(value = "Установить спецификации ответов")
     public static void installSpec(ResponseSpecification responseSpec){
         RestAssured.responseSpecification = responseSpec;
     }
@@ -77,6 +81,7 @@ public class Specifications {
      * @param requestSpec Входная спецификация запроса
      * @param responseSpec Входная спецификация ответа
      */
+    @Step(value = "Установить спецификации запросов и ответов")
     public static void installSpec(RequestSpecification requestSpec, ResponseSpecification responseSpec){
         RestAssured.requestSpecification = requestSpec;
         RestAssured.responseSpecification = responseSpec;
@@ -85,6 +90,7 @@ public class Specifications {
     /**
      * Обнуление спецификации
      */
+    @Step(value = "Обнуление спецификаций")
     public static void deleteSpec(){
         RestAssured.requestSpecification = null;
         RestAssured.responseSpecification = null;
